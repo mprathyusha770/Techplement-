@@ -1,0 +1,123 @@
+building a Contact Management System 
+
+2. **Implement Functionalities:**
+   - **Main Menu:**
+     - Display a menu with options for adding contacts, searching for contacts, updating contact information, and exiting.
+
+   - **Adding Contacts:**
+     - Prompt the user to enter the contact's name, phone number, and email.
+     - Create a dictionary to represent a contact and add it to a list.
+
+   - **Searching Contacts:**
+     - Prompt the user to enter a name to search for.
+     - Iterate through the list of contacts, and if a match is found, display the contact details.
+
+   - **Updating Contact Information:**
+     - Prompt the user to enter a name to update.
+     - Provide options to modify the phone number or email address of the contact.
+
+3. **Error Handling and Data Validation:**
+   - **Input Validation:**
+     - Validate user inputs to ensure they meet required formats (valid phone number, email).
+     - Display appropriate error messages for invalid inputs.
+
+   - **Error Handling:**
+     - Use try-except blocks to handle potential exceptions during user interactions or file operations.
+     - Provide meaningful error messages to guide the user.
+
+4. **File I/O for Data Persistence:**
+   - **Saving Contacts to File:**
+     - Use file I/O operations to save the list of contacts to a file in a format like JSON.
+
+   - **Loading Contacts from File:**
+     - Read the file and load contacts into the program when it starts.
+
+### Code Structure:
+
+```python
+import json
+
+contacts = []
+
+def display_menu():
+    print("1. Add Contact")
+    print("2. Search Contact")
+    print("3. Update Contact")
+    print("4. Exit")
+
+def add_contact():
+    name = input("Enter the contact's name: ")
+    phone = input("Enter the contact's phone number: ")
+    email = input("Enter the contact's email: ")
+
+    contact = {"Name": name, "Phone": phone, "Email": email}
+    contacts.append(contact)
+    print("Contact added successfully.")
+
+def search_contact():
+    name_to_search = input("Enter the name to search: ")
+    found_contacts = [contact for contact in contacts if contact["Name"].lower() == name_to_search.lower()]
+
+    if found_contacts:
+        for contact in found_contacts:
+            print("Contact Details:")
+            print(f"Name: {contact['Name']}")
+            print(f"Phone: {contact['Phone']}")
+            print(f"Email: {contact['Email']}")
+    else:
+        print("Contact not found.")
+
+def update_contact():
+    name_to_update = input("Enter the name to update: ")
+    found_contacts = [contact for contact in contacts if contact["Name"].lower() == name_to_update.lower()]
+
+    if found_contacts:
+        chosen_contact = found_contacts[0]
+        print("Select an option to update:")
+        print("1. Update Phone Number")
+        print("2. Update Email")
+        option = input("Enter your choice: ")
+
+        if option == "1":
+            chosen_contact["Phone"] = input("Enter the new phone number: ")
+            print("Phone number updated successfully.")
+        elif option == "2":
+            chosen_contact["Email"] = input("Enter the new email: ")
+            print("Email updated successfully.")
+        else:
+            print("Invalid option.")
+    else:
+        print("Contact not found.")
+
+def save_contacts():
+    with open("contacts.json", "w") as file:
+        json.dump(contacts, file)
+    print("Contacts saved to file.")
+
+def load_contacts():
+    try:
+        with open("contacts.json", "r") as file:
+            loaded_contacts = json.load(file)
+            contacts.extend(loaded_contacts)
+        print("Contacts loaded from file.")
+    except FileNotFoundError:
+        print("No existing contacts file.")
+
+# Main loop for user interaction
+while True:
+    display_menu()
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == "1":
+        add_contact()
+    elif choice == "2":
+        search_contact()
+    elif choice == "3":
+        update_contact()
+    elif choice == "4":
+        save_contacts()
+        print("Exiting program. Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please enter a number between 1 and 4.")
+``
