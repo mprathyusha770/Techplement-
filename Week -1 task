@@ -1,36 +1,4 @@
-building a Contact Management System 
 
-2. **Implement Functionalities:**
-   - **Main Menu:**
-     - Display a menu with options for adding contacts, searching for contacts, updating contact information, and exiting.
-
-   - **Adding Contacts:**
-     - Prompt the user to enter the contact's name, phone number, and email.
-     - Create a dictionary to represent a contact and add it to a list.
-
-   - **Searching Contacts:**
-     - Prompt the user to enter a name to search for.
-     - Iterate through the list of contacts, and if a match is found, display the contact details.
-
-   - **Updating Contact Information:**
-     - Prompt the user to enter a name to update.
-     - Provide options to modify the phone number or email address of the contact.
-
-3. **Error Handling and Data Validation:**
-   - **Input Validation:**
-     - Validate user inputs to ensure they meet required formats (valid phone number, email).
-     - Display appropriate error messages for invalid inputs.
-
-   - **Error Handling:**
-     - Use try-except blocks to handle potential exceptions during user interactions or file operations.
-     - Provide meaningful error messages to guide the user.
-
-4. **File I/O for Data Persistence:**
-   - **Saving Contacts to File:**
-     - Use file I/O operations to save the list of contacts to a file in a format like JSON.
-
-   - **Loading Contacts from File:**
-     - Read the file and load contacts into the program when it starts.
 
 ### Code Structure:
 
